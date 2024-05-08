@@ -1,2 +1,2 @@
-# Web2-Ecommerce
-Ecommerce da disciplina de web2
+# web2-carrinhoCompras
+Inserindo o carrinho de compras no trabalho.

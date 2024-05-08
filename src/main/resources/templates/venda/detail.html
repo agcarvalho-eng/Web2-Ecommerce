@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
+    <head th:replace="~{fragments/head :: head(~{},~{::title})}">
+        <title>Detalhe de Vendas</title>
+    </head>
+    <body>
+        <main class="container">
+            <h3>Detalhamento de Uma Venda</h3>
+            <br>
+            <table class="table" border="1">
+                <thead style="background-color: #f5f5dc;">
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Descrição do Item</th>
+                        <th>Valor Unitário do Item</th>
+                        <th>Quantidade</th>
+                        <th>Valor Total do Item</th>
+                        <th colspan="2">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterando através da lista dos itens de uma venda específica. -->
+                    <h6>Relatório referente a venda de ID: <span th:text="${venda.id}"></span></h6>
+                    <h6>Nome do cliente: <span th:text="${venda.pessoa.nome}"></span></h6>
+                <!--    <h6>Data da compra: <span th:text="${#dates.format(venda.data, 'dd/MM/yyyy')} + ' -- '
+                    + ${#dates.format(venda.data, 'HH:mm:ss')}"></span></h6>-->
+                    <br>
+                    <tr th:each="item : ${venda.getItensVenda()}">
+                        <td th:text="${item.id}"></td>
+                        <td th:text="${item.produto.descricao}"></td>
+                        <td th:text="${#numbers.formatCurrency(item.produto.valor)}"></td>
+                        <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
+                        <td th:text="${#numbers.formatCurrency(item.totalItemVenda())}"></td>
+                        <td> <a class="btn btn-primary" th:href="@{/venda/edit/{id}(id=${venda.id})}" role="button">Editar</a> </td>
+                        <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
+                                th:href="@{/venda/removeItem/{id}(id=${item.id})}" role="button">Excluir</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>

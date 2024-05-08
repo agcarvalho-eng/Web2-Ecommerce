@@ -1,0 +1,64 @@
+
+<header class="container" th:fragment="header">
+
+    <div class="bg-cabecalho">
+        <img src="/img/logomarca.jpg" alt="Logomarca da Empresa" style="width: 4cm; height: 3cm;">
+    </div>
+    <h1 class="bg-cabecalho"><b>VENDA FÁCIL - Venda de produtos diversos</b></h1>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-bg-color" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cadastro
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/pessoaFisica/form">Pessoa Física</a></li>
+                            <li><a class="dropdown-item" href="/pessoaJuridica/form">Pessoa Jurídica</a></li>
+                            <li><a class="dropdown-item" href="/produto/form">Produto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Relatórios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/pessoaFisica/list">Pessoas Físicas</a></li>
+                            <li><a class="dropdown-item" href="/pessoaJuridica/list">Pessoas Jurídicas</a></li>
+                            <li><a class="dropdown-item" href="/produto/list">Produtos</a></li>
+                            <li><a class="dropdown-item" href="/venda/list">Vendas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/produto/list-vitrine">Produtos</a>
+                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link ative" aria-current="page" href="/venda/list-carrinho">Carrinho</a>-->
+<!--                    </li>-->
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                        th:text="${session.venda == null  ? 'Carrinho [0]' : 'Carrinho [' + session.venda.itensVenda.size() + ']'}"
+                        href="/venda/list-carrinho">Carrinho
+                    </a>
+                    </li>
+
+                    <!--<li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+</header>
+
+

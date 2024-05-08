@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
+    <head th:replace="~{fragments/head :: head(~{},~{::title})}">
+        <title>Relatório Produtos</title>
+    </head>
+    <body>
+        <main class="container">
+            <h3>Relatório de Produtos</h3>
+            <br>
+            <table class="table" border="1">
+                <thead style="background-color: #f5f5dc;">
+                    <tr>
+                        <th>Produto ID</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th colspan="2">Operações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${produtos}">
+                        <td th:text="${p.id}"> </td>
+                        <td th:text="${p.descricao}"></td>
+                        <td th:text="${#numbers.formatCurrency(p.valor)}"> </td>
+                        <td> <a class="btn btn-primary" th:href="@{/produto/edit/{id}(id=${p.id})}" role="button">Editar</a> </td>
+                        <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
+                                th:href="@{/produto/remove/{id}(id=${p.id})}" role="button">Excluir</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+            </main>
+    </body>
+</html>

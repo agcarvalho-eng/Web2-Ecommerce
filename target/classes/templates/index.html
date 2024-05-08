@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
+    <head th:replace="~{fragments/head :: head(~{},~{::title})}">
+        <meta charset="UTF-8">
+        <title>Página inicial - Home</title>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <h2>Sobre Nossa Empresa</h2>
+                <p>
+                    Foi no coração de uma pequena cidade, onde sonhos ganhavam asas e
+                    empreendedores vislumbravam oportunidades. Foi nesse cenário que nasceu a
+                    VENDA FÁCIL, uma empresa que se tornaria um ícone de sucesso no mundo das vendas.
+                </p>
+                <p>
+                    Hoje, a VENDA FÁCIL é uma marca consolidada, sinônimo de qualidade, confiança e
+                    inovação. Com uma equipe dedicada e uma visão clara do futuro, a empresa
+                    continua a crescer e a inspirar outros empreendedores a perseguir seus sonhos.
+                </p>
+            </div>
+        </main>
+    </body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa de Venda de Produtos Diversos</title>
+    <link rel="stylesheet" href="/estilo1.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="/img/logomarca.jpg" alt="Logomarca da Empresa" style="width: 4cm; height: 3cm;">
+    </div>
+    <h1>VENDA FÁCIL - Venda de produtos diversos</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a th:href="@{/pessoaFisica/form}">Cadastrar Cliente PF</a>
+    <a th:href="@{/pessoaJuridica/form}">Cadastrar Cliente PJ</a>
+    <a th:href="@{/produto/form}">Cadastrar Produto</a>
+    <a th:href="@{/pessoaFisica/list}">Clientes PF Cadastrados</a>
+    <a th:href="@{/pessoaJuridica/list}">Clientes PJ Cadastrados</a>
+    <a th:href="@{/produto/list}">Produtos Cadastrados</a>
+    <a th:href="@{/venda/list}">Vendas Realizadas</a>
+</nav>
+
+<div class="container">
+    <h2>Sobre Nossa Empresa</h2>
+    <p>
+        Foi no coração de uma pequena cidade, onde sonhos ganhavam asas e
+        empreendedores vislumbravam oportunidades. Foi nesse cenário que nasceu a
+        VENDA FÁCIL, uma empresa que se tornaria um ícone de sucesso no mundo das vendas.
+    </p>
+    <p>
+        Hoje, a VENDA FÁCIL é uma marca consolidada, sinônimo de qualidade, confiança e
+        inovação. Com uma equipe dedicada e uma visão clara do futuro, a empresa
+        continua a crescer e a inspirar outros empreendedores a perseguir seus sonhos.
+    </p>
+</div>
+
+<footer>
+    <p>&copy; 2024 VENDA FÁCIL - Empresa de Venda de Produtos. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html> -->

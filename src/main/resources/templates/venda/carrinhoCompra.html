@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{fragments/head :: head(~{},~{::title})}">
+    <title>Carrinho de Compras</title>
+</head>
+<body>
+    <main class="container">
+        <h3 class="mt-3">Carrinho de Compras</h3>
+        <table class="table" border="1">
+            <thead style="background-color: #f5f5dc;">
+                <tr>
+                    <th>Descrição do Item</th>
+                    <th>Valor Unitário do Item</th>
+                    <th>Quantidade</th>
+                    <th>Valor Total do Item</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+            <th:block th:with="valorTotal=0.0"></th:block>
+                <tr th:each="item,i : ${session.venda.itensVenda}">
+                    <td th:text="${item.produto.descricao}"></td>
+                    <td th:text="${#numbers.formatCurrency(item.produto.valor)}"></td>
+                    <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
+                    <td th:text="${#numbers.formatCurrency(item.totalItemVenda())}"></td>
+                    <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
+                            th:href="@{/venda/removeItem/{id}(id=${i.index})}" role="button">Excluir</a> </td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 style="text-align: right">Valor total da compra: R$ <span th:text="${#numbers.formatCurrency(session.venda.totalVenda())}"></span></h4>
+        <form class="container" th:action="@{/produto/list-vitrine}" method="get">
+            <br>
+            <div class="d-flex justify-content-end">
+                <input class="btn btn-primary" type="submit" value="Continuar Compra">
+            </div>
+        </form>
+        <form class="container" th:action="@{/venda/save-carrinho}" method="get">
+            <br>
+            <div class="d-flex justify-content-end">
+                <input class="btn btn-primary" type="submit" value="Finalizar Compra">
+            </div>
+        </form>
+    </main>
+</body>
+</html>

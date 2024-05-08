@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
+    <head th:replace="~{fragments/head :: head(~{},~{::title})}">
+        <title>Relatório Pessoas Jurídicas</title>
+    </head>
+    <body>
+        <main class="container">
+            <h3>Relatório de Clientes Pessoa Jurídica</h3>
+            <br>
+            <table class="table" border="1">
+                <thead style="background-color: #f5f5dc;">
+                    <tr>
+                        <th>PJ ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>CNPJ</th>
+                        <th colspan="2">Operações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${pessoasJuridicas}">
+                        <td th:text="${p.id}"> </td>
+                        <td th:text="${p.nome}"></td>
+                        <td th:text="${p.telefone}"></td>
+                        <td th:text="${p.cnpj}"></td>
+                        <td> <a class="btn btn-primary" th:href="@{/pessoaJuridica/edit/{id}(id=${p.id})}" role="button">Editar</a> </td>
+                        <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
+                                th:href="@{/pessoaJuridica/remove/{id}(id=${p.id})}" role="button">Excluir</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
