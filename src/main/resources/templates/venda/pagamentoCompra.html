@@ -16,27 +16,20 @@
                 </tr>
             </thead>
             <tbody>
-            <th:block th:with="valorTotal=0.0"></th:block>
-                <tr th:each="item : ${session.venda.itensVenda}">
-<!--                    <td th:text="${venda.produto.descricao}"></td>-->
-<!--                    <td th:text="${#numbers.formatCurrency(venda.produto.valor)}"></td>-->
-                    <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
-<!--                    <td th:text="${#numbers.formatCurrency(venda.produto.valor * item.quantidade)}"></td>-->
-<!--                    <th:block th:with="valorTotal=${valorTotal + (venda.produto.valor * item.quantidade)}"></th:block>-->
-                </tr>
+            <tr th:each="item,i : ${session.venda.itensVenda}">
+                <td th:text="${item.produto.descricao}"></td>
+                <td th:text="${#numbers.formatCurrency(item.produto.valor)}"></td>
+                <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
+                <td th:text="${#numbers.formatCurrency(item.totalItemVenda())}"></td>
+            </tr>
             </tbody>
         </table>
-        <h4 style="text-align: right">Valor total da compra: R$ <span th:text="${#numbers.formatCurrency(valorTotal)}"></span></h4>
-        <form class="container" th:action="@{/produto/list-vitrine}" method="get">
-            <br>
-            <div class="d-flex justify-content-end">
-                <input class="btn btn-primary" type="submit" value="Continuar Compra">
-            </div>
-        </form>
-            <br>
-            <div class="mt-3">
-                <h3 style="text-align: right">Venda finalizada</h3>
-            </div>
+        <br>
+        <h4 style="text-align: right; font-weight: bold; background-color: lightgrey;">Valor total da compra:
+            <span th:text="${#numbers.formatCurrency(session.venda.totalVenda())}"></span></h4>
+        <div class="mt-3">
+            <h2 style="text-align: center; font-weight: bold; background-color: lightgrey;">Venda finalizada</h2>
+        </div>
     </main>
 </body>
 </html>

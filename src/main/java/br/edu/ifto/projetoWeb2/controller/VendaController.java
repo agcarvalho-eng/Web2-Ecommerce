@@ -32,6 +32,8 @@ public class VendaController {
      */
     @Autowired
     private Venda venda; //O spring vai criar o objeto na session.
+    @Autowired
+    private PessoaFisicaRepository pessoaFisicaRepository;
 
     @GetMapping("/form")
     public String form(Venda venda){
@@ -77,7 +79,7 @@ public class VendaController {
         return new ModelAndView("redirect:/venda/list");
     }
 
-    @GetMapping("/save-carrinho")
+    @GetMapping("/saveCarrinho")
     public ModelAndView saveCarrinho() {
         Pessoa p = new PessoaFisicaRepository().pessoaFisica(1L);
         venda.setPessoa(p);
@@ -92,10 +94,10 @@ public class VendaController {
         return new ModelAndView("redirect:/venda/list"); //Aponta o caminho da view no projeto em templates/venda.
     }
 
-    @GetMapping("removeItem/{id}")
-    public ModelAndView removeItem(@PathVariable("id") Long id){
-        venda.getItensVenda().remove(id);
-        return new ModelAndView("redirect:/list-carrinho" + venda.getId());
+    @GetMapping("removeItem/{index}")
+    public ModelAndView removeItem(@PathVariable("index") Long index){
+        venda.getItensVenda().remove(index);
+        return new ModelAndView("redirect:/venda/list-carrinho");
     }
 
     @GetMapping("/list-carrinho")

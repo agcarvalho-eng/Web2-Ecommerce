@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
+<html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}"
+      xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:font-weight="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments/head :: head(~{},~{::title})}">
     <title>Carrinho de Compras</title>
 </head>
@@ -17,25 +18,25 @@
                 </tr>
             </thead>
             <tbody>
-            <th:block th:with="valorTotal=0.0"></th:block>
                 <tr th:each="item,i : ${session.venda.itensVenda}">
                     <td th:text="${item.produto.descricao}"></td>
                     <td th:text="${#numbers.formatCurrency(item.produto.valor)}"></td>
                     <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
                     <td th:text="${#numbers.formatCurrency(item.totalItemVenda())}"></td>
                     <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
-                            th:href="@{/venda/removeItem/{id}(id=${i.index})}" role="button">Excluir</a> </td>
+                            th:href="@{/venda/removeItem/{index}(index=${i.index})}" role="button">Excluir</a> </td>
                 </tr>
             </tbody>
         </table>
-        <h4 style="text-align: right">Valor total da compra: R$ <span th:text="${#numbers.formatCurrency(session.venda.totalVenda())}"></span></h4>
+        <h4 style="text-align: right; font-weight: bold; background-color: lightgrey;">Valor total da compra:
+            <span th:text="${#numbers.formatCurrency(session.venda.totalVenda())}"></span></h4>
         <form class="container" th:action="@{/produto/list-vitrine}" method="get">
             <br>
             <div class="d-flex justify-content-end">
                 <input class="btn btn-primary" type="submit" value="Continuar Compra">
             </div>
         </form>
-        <form class="container" th:action="@{/venda/save-carrinho}" method="get">
+        <form class="container" th:action="@{/venda/saveCarrinho}" method="get">
             <br>
             <div class="d-flex justify-content-end">
                 <input class="btn btn-primary" type="submit" value="Finalizar Compra">
