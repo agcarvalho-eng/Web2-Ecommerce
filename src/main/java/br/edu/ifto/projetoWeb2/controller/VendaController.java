@@ -4,6 +4,7 @@ import br.edu.ifto.projetoWeb2.model.entity.*;
 import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
 import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
 import br.edu.ifto.projetoWeb2.model.repository.VendaRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -84,8 +85,8 @@ public class VendaController {
         Pessoa p = new PessoaFisicaRepository().pessoaFisica(1L);
         venda.setPessoa(p);
         venda.setData(LocalDate.now());
-        repository.save(venda);
-        return new ModelAndView("redirect:/venda/list-pagamento");
+        repository.save(this.venda);
+        return new ModelAndView("redirect:/venda/list-finalizaCompra");
     }
 
     @GetMapping("/remove/{id}")
@@ -95,19 +96,21 @@ public class VendaController {
     }
 
     @GetMapping("removeItem/{index}")
-    public ModelAndView removeItem(@PathVariable("index") Long index){
+    public ModelAndView removeItem(@PathVariable("index") int index){
+        //System.out.println("Índice da lista a ser apagado: " + index);
         venda.getItensVenda().remove(index);
         return new ModelAndView("redirect:/venda/list-carrinho");
     }
 
     @GetMapping("/list-carrinho")
     public ModelAndView listarCarrinho() {
+        //session.invalidate();
         return new ModelAndView("/venda/carrinhoCompra"); //Aponta o caminho da view no projeto em /templates/venda.
     }
 
-    @GetMapping("/list-pagamento")
-    public ModelAndView listarPagamento() {
-        return new ModelAndView("/venda/pagamentoCompra"); //Aponta o caminho da view no projeto em /templates/venda.
+    @GetMapping("/list-finalizaCompra")
+    public ModelAndView listarCompra() {
+        return new ModelAndView("/venda/finalizaCompra"); //Aponta o caminho da view no projeto em /templates/venda.
     }
 
     /**

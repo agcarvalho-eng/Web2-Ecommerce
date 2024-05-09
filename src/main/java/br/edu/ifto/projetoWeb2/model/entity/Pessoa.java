@@ -3,6 +3,7 @@ package br.edu.ifto.projetoWeb2.model.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
     /*
     * @Id - Usada para marcar um campo ou propriedade de uma entidade
     * como a chave primária (primary key) no contexto de mapeamento

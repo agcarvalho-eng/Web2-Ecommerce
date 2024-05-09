@@ -5,7 +5,10 @@
 </head>
 <body>
     <main class="container">
-        <h3 class="mt-3">Pagamento da Compra</h3>
+        <h3 class="mt-3">Resumo da Compra</h3>
+        <h6>Nome do cliente: <span th:text="${session.venda.pessoa.nome}"></span></h6>
+        <h6>Data da compra: <span th:text="${#temporals.format(venda.data,
+            'dd/MM/yyyy -- HH:mm:ss')}"></span></h6>
         <table class="table" border="1">
             <thead style="background-color: #f5f5dc;">
                 <tr>
@@ -28,7 +31,7 @@
         <h4 style="text-align: right; font-weight: bold; background-color: lightgrey;">Valor total da compra:
             <span th:text="${#numbers.formatCurrency(session.venda.totalVenda())}"></span></h4>
         <div class="mt-3">
-            <h2 style="text-align: center; font-weight: bold; background-color: lightgrey;">Venda finalizada</h2>
+            <h2 style="text-align: center; font-weight: bold; background-color: lightgrey;">Compra finalizada</h2>
         </div>
     </main>
 </body>
