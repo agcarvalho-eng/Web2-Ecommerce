@@ -4,7 +4,7 @@
     <div class="bg-cabecalho">
         <img src="/img/logomarca.jpg" alt="Logomarca da Empresa" style="width: 4cm; height: 3cm;">
     </div>
-    <h1 class="bg-cabecalho"><b>VENDA FÁCIL - Venda de produtos diversos</b></h1>
+    <h1 class="bg-cabecalho"><b>VENDA FÁCIL - Venda de produtos alimentícius</b></h1>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary nav-bg-color" style="background-color: #e3f2fd;">
         <div class="container-fluid">
@@ -39,16 +39,21 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/produto/list-vitrine">Produtos</a>
+                        <a class="nav-link active" aria-current="page" href="/produto/list-vitrine">Comprar</a>
                     </li>
 <!--                    <li class="nav-item">-->
 <!--                        <a class="nav-link ative" aria-current="page" href="/venda/list-carrinho">Carrinho</a>-->
 <!--                    </li>-->
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                        th:text="${session.venda == null  ? 'Carrinho [0]' : 'Carrinho [' + session.venda.itensVenda.size() + ']'}"
-                        href="/venda/list-carrinho">Carrinho
-                    </a>
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item d-flex">
+                        <div class="d-flex align-items-center">
+                            <img src="/img/carrinho.png" alt="figura" style="height: 2em;">
+                            <a class="nav-link active" aria-current="page"
+                               th:text="${session.venda == null  ? 'Carrinho [0]' : 'Carrinho [' + session.venda.itensVenda.size() + ']'}"
+                               href="/venda/list-carrinho">Carrinho
+                            </a>
+                        </div>
                     </li>
 
                     <!--<li class="nav-item">

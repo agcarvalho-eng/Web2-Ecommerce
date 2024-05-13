@@ -30,18 +30,28 @@
         </table>
         <h4 style="text-align: right; font-weight: bold; background-color: lightgrey;">Valor total da compra:
             <span th:text="${#numbers.formatCurrency(session.venda.totalVenda())}"></span></h4>
-        <form class="container" th:action="@{/produto/list-vitrine}" method="get">
-            <br>
-            <div class="d-flex justify-content-end">
-                <input class="btn btn-primary" type="submit" value="Continuar Compra">
-            </div>
-        </form>
-        <form class="container" th:action="@{/venda/save}" method="get">
-            <br>
-            <div class="d-flex justify-content-end">
-                <input class="btn btn-primary" type="submit" value="Finalizar Compra">
-            </div>
-        </form>
+        <div class="d-flex justify-content-end bg-light p-3">
+            <form th:action="@{/produto/list-vitrine}" method="get" class="mr-1">
+                <input class="btn btn-secondary m-2" type="submit" value="Continuar Compra">
+            </form>
+            <form th:action="@{/venda/save}" method="get">
+                <input class="btn btn-secondary m-2" type="submit" value="Finalizar Compra">
+            </form>
+        </div>
+
+
+<!--        <form class="container" th:action="@{/produto/list-vitrine}" method="get">-->
+<!--            <br>-->
+<!--            <div class="d-flex justify-content-end">-->
+<!--                <input class="btn btn-primary" type="submit" value="Continuar Compra">-->
+<!--            </div>-->
+<!--        </form>-->
+<!--        <form class="container" th:action="@{/venda/save}" method="get">-->
+<!--            <br>-->
+<!--            <div class="d-flex justify-content-end">-->
+<!--                <input class="btn btn-primary" type="submit" value="Finalizar Compra">-->
+<!--            </div>-->
+<!--        </form>-->
     </main>
 </body>
 </html>

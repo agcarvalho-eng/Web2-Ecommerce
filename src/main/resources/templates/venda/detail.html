@@ -15,15 +15,15 @@
                         <th>Valor Unitário do Item</th>
                         <th>Quantidade</th>
                         <th>Valor Total do Item</th>
-                        <th colspan="2">Ações</th>
+<!--                        <th colspan="2">Ações</th>-->
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Iterando através da lista dos itens de uma venda específica. -->
                     <h6>Relatório referente a venda de ID: <span th:text="${venda.id}"></span></h6>
                     <h6>Nome do cliente: <span th:text="${venda.pessoa.nome}"></span></h6>
-                <!--    <h6>Data da compra: <span th:text="${#dates.format(venda.data, 'dd/MM/yyyy')} + ' -- '
-                    + ${#dates.format(venda.data, 'HH:mm:ss')}"></span></h6>-->
+                    <h6>Telefone: <span th:text="${venda.pessoa.telefone}"></span></h6>
+                    <h6>Data da compra: <span th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yy -- HH:mm:ss')}"></span></h6>
                     <br>
                     <tr th:each="item : ${venda.getItensVenda()}">
                         <td th:text="${item.id}"></td>
@@ -31,9 +31,9 @@
                         <td th:text="${#numbers.formatCurrency(item.produto.valor)}"></td>
                         <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
                         <td th:text="${#numbers.formatCurrency(item.totalItemVenda())}"></td>
-                        <td> <a class="btn btn-primary" th:href="@{/venda/edit/{id}(id=${venda.id})}" role="button">Editar</a> </td>
-                        <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
-                                th:href="@{/venda/removeItem/{id}(id=${item.id})}" role="button">Excluir</a> </td>
+<!--                        <td> <a class="btn btn-primary" th:href="@{/venda/edit/{id}(id=${venda.id})}" role="button">Editar</a> </td>-->
+<!--                        <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"-->
+<!--                                th:href="@{/venda/removeItem/{id}(id=${item.id})}" role="button">Excluir</a> </td>-->
                     </tr>
                 </tbody>
             </table>

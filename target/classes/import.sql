@@ -6,6 +6,8 @@ insert into produto (descricao, valor) values ('Guaraná Kuat - 2L', 8.50);
 insert into produto (descricao, valor) values ('Fanta', 7.00);
 insert into produto (descricao, valor) values ('Suco uva', 6.50);
 insert into produto (descricao, valor) values ('Vodka Smirnoff', 9.00);
+insert into produto (descricao, valor) values ('Coxinha de frango', 8.50);
+insert into produto (descricao, valor) values ('Pizza de calabresa', 7.35);
 
 --Insert na tabela Venda.
 insert into Venda (data, pessoa_id) values (current_timestamp, 1);
