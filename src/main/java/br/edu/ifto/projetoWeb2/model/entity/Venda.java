@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private LocalDate data;
+    private LocalDateTime dataEHorario;
 /* @OneToMany - Usada para mapear um relacionamento de
  * um-para-muitos entre duas entidades em um contexto de mapeamento
  * objeto-relacional (ORM), onde uma entidade possui uma coleção de
@@ -52,12 +53,12 @@ public class Venda implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDateTime getDataEHorario() {
+        return dataEHorario;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDataEHorario(LocalDateTime dataEHorario) {
+        this.dataEHorario = dataEHorario;
     }
 
     public List<ItemVenda> getItensVenda() {

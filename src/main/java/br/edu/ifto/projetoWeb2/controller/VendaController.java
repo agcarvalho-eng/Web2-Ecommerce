@@ -1,6 +1,9 @@
 package br.edu.ifto.projetoWeb2.controller;
 
-import br.edu.ifto.projetoWeb2.model.entity.*;
+import br.edu.ifto.projetoWeb2.model.entity.ItemVenda;
+import br.edu.ifto.projetoWeb2.model.entity.Pessoa;
+import br.edu.ifto.projetoWeb2.model.entity.Produto;
+import br.edu.ifto.projetoWeb2.model.entity.Venda;
 import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
 import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
 import br.edu.ifto.projetoWeb2.model.repository.VendaRepository;
@@ -10,10 +13,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Transactional
 @Scope("request")
@@ -33,6 +40,7 @@ public class VendaController {
      */
     @Autowired
     private Venda venda; //O spring vai criar o objeto na session.
+
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
 
@@ -72,21 +80,13 @@ public class VendaController {
 
 
     @GetMapping("/save")
-    public ModelAndView save() {
-        Pessoa p = new PessoaFisicaRepository().pessoaFisica(1L);
+    public ModelAndView save(HttpSession session) {
+        Pessoa p = pessoaFisicaRepository.pessoaFisica(1L);
         venda.setPessoa(p);
-        venda.setData(LocalDate.now());
+        venda.setDataEHorario(LocalDateTime.now());
         repository.save(venda);
+        session.invalidate();
         return new ModelAndView("redirect:/venda/list");
-    }
-
-    @GetMapping("/saveCarrinho")
-    public ModelAndView saveCarrinho() {
-        Pessoa p = new PessoaFisicaRepository().pessoaFisica(1L);
-        venda.setPessoa(p);
-        venda.setData(LocalDate.now());
-        repository.save(this.venda);
-        return new ModelAndView("redirect:/venda/list-finalizaCompra");
     }
 
     @GetMapping("/remove/{id}")
@@ -106,11 +106,6 @@ public class VendaController {
     public ModelAndView listarCarrinho() {
         //session.invalidate();
         return new ModelAndView("/venda/carrinhoCompra"); //Aponta o caminho da view no projeto em /templates/venda.
-    }
-
-    @GetMapping("/list-finalizaCompra")
-    public ModelAndView listarCompra() {
-        return new ModelAndView("/venda/finalizaCompra"); //Aponta o caminho da view no projeto em /templates/venda.
     }
 
     /**
