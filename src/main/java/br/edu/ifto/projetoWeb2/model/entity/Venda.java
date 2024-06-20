@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Component
-@Scope("session")
+@Component // Bean gerenciável pelo Spring.
+@Scope("session") // A venda vai ser criada na sessão.
 @Entity
 public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
