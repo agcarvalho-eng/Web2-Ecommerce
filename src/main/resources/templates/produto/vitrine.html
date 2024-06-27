@@ -6,6 +6,9 @@
 <body>
     <main class="container">
         <h3 class="mt-3">Vitrine de Produtos</h3>
+        <span th:text="${!#strings.isEmpty(erroQtd)} ? ${erroQtd}"
+              th:style="${!#strings.isEmpty(erroQtd)} ? 'background-color: red; color: white; padding: 5px;' : ''">
+        </span>
         <table class="table" border="1">
             <thead style="background-color: #f5f5dc;">
                 <tr>
@@ -16,16 +19,14 @@
                 </tr>
             </thead>
             <tbody>
-
                 <tr th:each="p : ${produtos}">
                     <td th:text="${p.descricao}"></td>
                     <td th:text="${#numbers.formatCurrency(p.valor)}"></td>
                     <form class="container" th:action="@{/venda/addItem}" th:object="${item}" method="post">
                         <input type="hidden" th:name="produto.id" th:value="${p.id}">
-                        <td><input class="form-control" type="number" th:name="quantidade" th:value="${quantidade}" th:errorclass="is-invalid" style="width: 3cm;">
-                            <label class="invalid-feedback" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></label>
+                        <td>
+                            <input class="form-control" type="number" th:field="*{quantidade}" th:errorclass="is-invalid" style="width: 3cm;">
                         </td>
-
                         <td><input class="btn btn-primary" type="submit" value="Add Carrinho"></td>
                     </form>
                 </tr>

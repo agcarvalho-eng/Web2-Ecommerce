@@ -1,5 +1,6 @@
 package br.edu.ifto.projetoWeb2.controller;
 
+import br.edu.ifto.projetoWeb2.model.entity.ItemVenda;
 import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
 import br.edu.ifto.projetoWeb2.model.entity.Produto;
 import jakarta.validation.Valid;
@@ -42,6 +43,7 @@ public class ProdutoController {
     public ModelAndView listarVitrine(ModelMap model) {
         model.addAttribute("msg", "Lista de Produtos");
         model.addAttribute("produtos", repository.produtos());
+        model.addAttribute("item", new ItemVenda());
         return new ModelAndView("/produto/vitrine", model); //Aponta o caminho da view no projeto em /templates/produto.
     }
 

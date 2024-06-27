@@ -8,16 +8,19 @@ import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
 import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
 import br.edu.ifto.projetoWeb2.model.repository.VendaRepository;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,11 +47,6 @@ public class VendaController {
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
 
-    @GetMapping("/form")
-    public String form(Venda venda){
-        return "/venda/form";
-    }
-
     @GetMapping("/list")
     public ModelAndView listar(ModelMap model){
         model.addAttribute("msg", "Lista de Vendas");
@@ -57,7 +55,11 @@ public class VendaController {
     }
 
     @PostMapping("/addItem")
-    public ModelAndView VendaAddItem(ItemVenda item){
+    public ModelAndView VendaAddItem(@Valid ItemVenda item, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("erroQtd", "Você precisa informar a quantidade.");
+            return new ModelAndView("redirect:/produto/list-vitrine");
+        }
         //System.out.println("ID= " + item.getId());
         //System.out.println("Quantidade= " + item.getQuantidade());
         // Adiciona o itemVenda enviado por parâmetro na lista da venda da sessão
@@ -80,7 +82,11 @@ public class VendaController {
 
 
     @GetMapping("/save")
-    public ModelAndView save(HttpSession session) {
+    public ModelAndView save(HttpSession session, ModelMap model) {
+        if(venda == null || venda.getItensVenda().isEmpty()){
+            model.addAttribute("erroItem","Você precisa informar um item para a venda.");
+            return new ModelAndView("/venda/carrinhoCompra");
+        }
         Pessoa p = pessoaFisicaRepository.pessoaFisica(1L);
         venda.setPessoa(p);
         venda.setDataEHorario(LocalDateTime.now());
