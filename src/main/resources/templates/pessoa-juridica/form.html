@@ -15,13 +15,16 @@
                 <div class="form-row">
                     <div class="mb-2 col-lg-6">
                         <input type="hidden" th:field="*{id}">
-                        <input class="form-control" type="text" th:field="*{nome}" placeholder="Nome">
+                        <input class="form-control" type="text" th:field="*{nome}" th:errorclass="is-invalid" placeholder="Nome">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></label>
                     </div>
                     <div class="mb-2 col-lg-6">
-                        <input class="form-control" type="text" th:field="*{telefone}" placeholder="Telefone">
+                        <input class="form-control" type="text" th:field="*{telefone}" th:errorclass="is-invalid" placeholder="Telefone">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></label>
                     </div>
                     <div class="mb-2 col-lg-6">
-                        <input class="form-control" type="text" th:field="*{cnpj}" placeholder="CNPJ">
+                        <input class="form-control" type="text" th:field="*{cnpj}" th:errorclass="is-invalid" placeholder="CNPJ (apenas números)">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('cnpj')}" th:errors="*{cnpj}"></label>
                     </div>
                     <div class="mb-2 col-lg-6">
                         <input type="submit" value="Enviar">

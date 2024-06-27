@@ -15,10 +15,12 @@
                 <div class="form-row">
                     <div class="mb-2 col-lg-6">
                         <input type="hidden" th:field="*{id}">
-                        <input class="form-control" type="text" th:field="*{descricao}" placeholder="Descrição">
+                        <input class="form-control" type="text" th:field="*{descricao}" th:errorclass="is-invalid" placeholder="Descrição">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></label>
                     </div>
                     <div class="mb-2 col-lg-6">
-                        <input class="form-control" type="text" th:field="*{valor}" placeholder="Valor">
+                        <input class="form-control" type="number" th:field="*{valor}" th:errorclass="is-invalid" step=".01">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('valor')}" th:errors="*{valor}"></label>
                     </div>
                     <div class="mb-2 col-lg-6">
                         <input type="submit" value="Enviar">

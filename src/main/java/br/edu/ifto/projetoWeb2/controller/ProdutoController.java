@@ -2,10 +2,12 @@ package br.edu.ifto.projetoWeb2.controller;
 
 import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
 import br.edu.ifto.projetoWeb2.model.entity.Produto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +46,10 @@ public class ProdutoController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save(Produto produto) {
+    public ModelAndView save(@Valid Produto produto, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("/produto/form");
+        }
         repository.save(produto);
         return new ModelAndView("redirect:/produto/list");
     }
@@ -71,7 +76,10 @@ public class ProdutoController {
     }
 
     @PostMapping("/update")
-    public ModelAndView update(Produto produto) {
+    public ModelAndView update(@Valid Produto produto, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("/produto/form");
+        }
         repository.update(produto);
         return new ModelAndView("redirect:/produto/list"); //Aponta o caminho da view no projeto em /templates/produto.
     }

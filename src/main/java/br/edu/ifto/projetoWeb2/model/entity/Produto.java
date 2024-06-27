@@ -1,6 +1,7 @@
 package br.edu.ifto.projetoWeb2.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
 /*
@@ -29,7 +30,11 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String descricao;
+
+    @Min(1)
     private double valor;
 
     @ManyToOne

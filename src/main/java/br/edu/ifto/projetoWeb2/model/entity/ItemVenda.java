@@ -1,6 +1,7 @@
 package br.edu.ifto.projetoWeb2.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ public class ItemVenda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+    @Min(1)
     private double quantidade;
     /*
      * @ManyToOne - Usada para mapear um relacionamento

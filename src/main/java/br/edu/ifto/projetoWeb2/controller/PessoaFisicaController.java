@@ -2,10 +2,12 @@ package br.edu.ifto.projetoWeb2.controller;
 
 import br.edu.ifto.projetoWeb2.model.entity.PessoaFisica;
 import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +38,10 @@ public class PessoaFisicaController {
         return new ModelAndView("/pessoa-fisica/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-fisica.
     }
     @PostMapping("/save")
-    public ModelAndView save(PessoaFisica pessoaFisica) {
+    public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result) {
+        if(result.hasErrors()) {
+            return new ModelAndView("/pessoa-fisica/form");
+        }
         pessoaFisicaRepository.save(pessoaFisica);
         return new ModelAndView("redirect:/pessoaFisica/list");
     }
@@ -63,7 +68,10 @@ public class PessoaFisicaController {
     }
 
     @PostMapping("/update")
-    public ModelAndView update(PessoaFisica pessoaFisica) {
+    public ModelAndView update(@Valid PessoaFisica pessoaFisica, BindingResult result) {
+        if(result.hasErrors()) {
+            return new ModelAndView("/pessoa-fisica/form");
+        }
         pessoaFisicaRepository.update(pessoaFisica);
         return new ModelAndView("redirect:/pessoaFisica/list");
     }
