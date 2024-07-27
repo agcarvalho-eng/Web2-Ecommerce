@@ -15,11 +15,18 @@ public class PessoaJuridicaRepository {
     private EntityManager em;
 
     public void save(PessoaJuridica pessoaJuridica){
+
         em.persist(pessoaJuridica);
     }
 
     public PessoaJuridica pessoaJuridica(Long id){
         return em.find(PessoaJuridica.class, id);
+    }
+
+    public List<Pessoa> buscarNomePJ(String name){
+        Query query = em.createQuery("from PessoaJuridica pj where lower(pj.nome) like lower(:n)");
+        query.setParameter("n", "%"+name+"%");
+        return query.getResultList();
     }
 
     public List<Pessoa> pessoasJuridicas(){

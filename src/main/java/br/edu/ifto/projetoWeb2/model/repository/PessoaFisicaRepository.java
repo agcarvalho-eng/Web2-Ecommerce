@@ -22,6 +22,12 @@ public class PessoaFisicaRepository {
         return em.find(PessoaFisica.class, id);
     }
 
+    public List<Pessoa> buscarNomePF(String name){
+        Query query = em.createQuery("from PessoaFisica pf where lower(pf.nome) like lower(:n)");
+        query.setParameter("n", "%"+name+"%");
+        return query.getResultList();
+    }
+
     public List<Pessoa> pessoasFisicas(){
         Query query = em.createQuery("from PessoaFisica ");
         return query.getResultList();

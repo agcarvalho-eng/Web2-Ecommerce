@@ -25,6 +25,12 @@ public class ProdutoRepository {
         return query.getResultList();
     }
 
+    public List<Produto> buscarDescricaoProduto(String description){
+        Query query = em.createQuery("from Produto pd where Lower(pd.descricao) like lower(:n)");
+        query.setParameter("n", "%"+description+"%");
+        return query.getResultList();
+    }
+
     public void remove(Long id){
         Produto p = em.find(Produto.class, id);
         em.remove(p);

@@ -1,6 +1,7 @@
 package br.edu.ifto.projetoWeb2.controller;
 
 import br.edu.ifto.projetoWeb2.model.entity.ItemVenda;
+import br.edu.ifto.projetoWeb2.model.entity.Pessoa;
 import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
 import br.edu.ifto.projetoWeb2.model.entity.Produto;
 import jakarta.validation.Valid;
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Transactional
 @Controller
 @RequestMapping("produto")
 public class ProdutoController {
     @Autowired
     ProdutoRepository repository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     /**
      * @param produto necessário devido utilizar no form.html o th:object que faz referência ao objeto esperado no controller.
@@ -37,6 +42,16 @@ public class ProdutoController {
         model.addAttribute("msg", "Lista de Produtos");
         model.addAttribute("produtos", repository.produtos());
         return new ModelAndView("/produto/list", model); //Aponta o caminho da view no projeto em /templates/produto.
+    }
+
+    @GetMapping("/list/{descricao}")
+    public ModelAndView buscarDescricaoProduto(@PathVariable("descricao") @Valid String descricao, ModelMap model, BindingResult result) {
+        if(result.hasErrors()){
+            return new ModelAndView("redirect:/produto/list");
+        }
+        List<Produto> attributeValue = produtoRepository.buscarDescricaoProduto(descricao);
+        model.addAttribute("produtos", attributeValue);
+        return new ModelAndView("/produto/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-juridica.
     }
 
     @GetMapping("/list-vitrine")

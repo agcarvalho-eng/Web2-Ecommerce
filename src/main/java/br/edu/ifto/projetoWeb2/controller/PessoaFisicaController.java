@@ -1,5 +1,6 @@
 package br.edu.ifto.projetoWeb2.controller;
 
+import br.edu.ifto.projetoWeb2.model.entity.Pessoa;
 import br.edu.ifto.projetoWeb2.model.entity.PessoaFisica;
 import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
 import jakarta.validation.Valid;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Transactional
 @Controller
@@ -65,6 +68,13 @@ public class PessoaFisicaController {
     public ModelAndView edit(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("pessoaFisica", pessoaFisicaRepository.pessoaFisica(id));
         return new ModelAndView("/pessoa-fisica/form", model); // Aponta o caminho da view no projeto em /templates/pessoa-fisica).
+    }
+
+    @GetMapping("/list/{nome}")
+    public ModelAndView buscarNomePF(@PathVariable("nome") String nome, ModelMap model){
+        List<Pessoa> attributeValue = pessoaFisicaRepository.buscarNomePF(nome);
+        model.addAttribute("pessoasFisicas", attributeValue);
+        return new ModelAndView("/pessoa-fisica/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-fisica.
     }
 
     @PostMapping("/update")

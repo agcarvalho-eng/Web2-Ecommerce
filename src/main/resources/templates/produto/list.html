@@ -5,7 +5,19 @@
     </head>
     <body>
         <main class="container">
-            <h3>Relatório de Produtos</h3>
+            <br>
+            <form class="container" th:action="@{/produto/list}" method="get">
+                <div class="form-row">
+                    <div class="mb-2 col-lg-6">
+                        <input class="form-control" type="text" th:value="${descricao}" name="descricao" placeholder="Descrição">
+                    <label class="invalid-feedback" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></label>
+                    </div>
+                    <div class="mb-2 col-lg-6">
+                        <input type="submit" value="Buscar">
+                    </div>
+                </div>
+            </form>
+            <h3>Lista de Produtos</h3>
             <br>
             <table class="table" border="1">
                 <thead style="background-color: #f5f5dc;">
