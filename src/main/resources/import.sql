@@ -10,7 +10,7 @@ insert into produto (descricao, valor) values ('Coxinha de frango', 8.50);
 insert into produto (descricao, valor) values ('Pizza de calabresa', 7.35);
 
 --Insert na tabela Venda.
--- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 1);
+-- insert into Venda (dataehorario, pessoa_id) values (12/07/24 12:00:00, 1);
 -- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 2);
 -- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 1);
 -- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 3);

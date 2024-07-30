@@ -10,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -44,13 +41,13 @@ public class ProdutoController {
         return new ModelAndView("/produto/list", model); //Aponta o caminho da view no projeto em /templates/produto.
     }
 
-    @GetMapping("/list/{descricao}")
-    public ModelAndView buscarDescricaoProduto(@PathVariable("descricao") @Valid String descricao, ModelMap model, BindingResult result) {
-        if(result.hasErrors()){
-            return new ModelAndView("redirect:/produto/list");
+    //@Pathvariable ou requestparam
+    @PostMapping("/buscarDescricaoProduto")
+    public ModelAndView buscarDescricaoProduto(@RequestParam("descricao") String descricao, ModelMap model) {
+        if(descricao.isEmpty()){
+           return new ModelAndView("redirect:/produto/list");
         }
-        List<Produto> attributeValue = produtoRepository.buscarDescricaoProduto(descricao);
-        model.addAttribute("produtos", attributeValue);
+        model.addAttribute("produtos", produtoRepository.buscarDescricaoProduto(descricao.trim()));
         return new ModelAndView("/produto/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-juridica.
     }
 

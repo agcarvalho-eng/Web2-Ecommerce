@@ -26,8 +26,8 @@ public class ProdutoRepository {
     }
 
     public List<Produto> buscarDescricaoProduto(String description){
-        Query query = em.createQuery("from Produto pd where Lower(pd.descricao) like lower(:n)");
-        query.setParameter("n", "%"+description+"%");
+        Query query = em.createQuery("from Produto pd where Lower(pd.descricao) like lower(:d)");
+        query.setParameter("d", "%"+description+"%");
         return query.getResultList();
     }
 

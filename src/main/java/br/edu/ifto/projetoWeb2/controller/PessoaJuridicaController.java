@@ -10,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -42,10 +39,12 @@ public class PessoaJuridicaController {
         return new ModelAndView("/pessoa-juridica/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-juridica.
     }
 
-    @GetMapping("/list/{nome}")
-    public ModelAndView buscarNomePJ(@PathVariable("nome") String nome, ModelMap model){
-        List<Pessoa> attributeValue = pessoaJuridicaRepository.buscarNomePJ(nome);
-        model.addAttribute("pessoasJuridicas", attributeValue);
+    @PostMapping("/buscarNomePJ")
+    public ModelAndView buscarNomePJ(@RequestParam("nome") String nome, ModelMap model){
+        if(nome.isBlank()){
+            return new ModelAndView("redirect:/pessoaJuridica/list");
+        }
+        model.addAttribute("pessoasJuridicas", pessoaJuridicaRepository.buscarNomePJ(nome.trim()));
         return new ModelAndView("/pessoa-juridica/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-juridica.
     }
     @PostMapping("/save")

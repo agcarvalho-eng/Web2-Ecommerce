@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -70,10 +67,12 @@ public class PessoaFisicaController {
         return new ModelAndView("/pessoa-fisica/form", model); // Aponta o caminho da view no projeto em /templates/pessoa-fisica).
     }
 
-    @GetMapping("/list/{nome}")
-    public ModelAndView buscarNomePF(@PathVariable("nome") String nome, ModelMap model){
-        List<Pessoa> attributeValue = pessoaFisicaRepository.buscarNomePF(nome);
-        model.addAttribute("pessoasFisicas", attributeValue);
+    @PostMapping("/buscarNomePF")
+    public ModelAndView buscarNomePF(@RequestParam("nome") String nome, ModelMap model){
+        if(nome.isBlank()){
+            return new ModelAndView("redirect:/pessoaFisica/list");
+        }
+        model.addAttribute("pessoasFisicas", pessoaFisicaRepository.buscarNomePF(nome.trim()));
         return new ModelAndView("/pessoa-fisica/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-fisica.
     }
 
