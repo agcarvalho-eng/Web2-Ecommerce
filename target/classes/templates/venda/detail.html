@@ -23,7 +23,7 @@
                     <h6>Relatório referente a venda de ID: <span th:text="${venda.id}"></span></h6>
                     <h6>Nome do cliente: <span th:text="${venda.pessoa.nome}"></span></h6>
                     <h6>Telefone: <span th:text="${venda.pessoa.telefone}"></span></h6>
-                    <h6>Data da compra: <span th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yy -- HH:mm:ss')}"></span></h6>
+                    <h6>Data da compra: <span th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yy HH:mm:ss')}"></span></h6>
                     <br>
                     <tr th:each="item : ${venda.getItensVenda()}">
                         <td th:text="${item.id}"></td>
