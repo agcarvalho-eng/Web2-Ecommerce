@@ -116,17 +116,6 @@ public class VendaController {
         return new ModelAndView("/venda/carrinhoCompra"); //Aponta o caminho da view no projeto em /templates/venda.
     }
 
-//    @PostMapping("/buscarDataVenda")
-//    public ModelAndView buscarDataVenda(@RequestParam("dataEHorario") String dataEHorario,
-//        ModelMap model) throws ParseException {
-//        if(dataEHorario.isEmpty()){
-//            return new ModelAndView("redirect:/venda/list");
-//        }
-//        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        LocalDateTime date = LocalDateTime.from(LocalDateTime.parse(dataEHorario, parser));
-//        model.addAttribute("vendas", vendaRepository.buscarDataVenda(date));
-//        return new ModelAndView("/venda/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-juridica.
-//    }
 
     @PostMapping("/buscarDataVenda")
     public ModelAndView buscarDataVenda(@RequestParam("dataEHorario") String dataEHorario, ModelMap model) throws ParseException {
