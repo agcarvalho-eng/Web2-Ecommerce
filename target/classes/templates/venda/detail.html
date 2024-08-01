@@ -12,6 +12,7 @@
                     <tr>
                         <th>Item ID</th>
                         <th>Descrição do Item</th>
+                        <th>Data da compra</th>
                         <th>Valor Unitário do Item</th>
                         <th>Quantidade</th>
                         <th>Valor Total do Item</th>
@@ -23,11 +24,12 @@
                     <h6>Relatório referente a venda de ID: <span th:text="${venda.id}"></span></h6>
                     <h6>Nome do cliente: <span th:text="${venda.pessoa.nome}"></span></h6>
                     <h6>Telefone: <span th:text="${venda.pessoa.telefone}"></span></h6>
-                    <h6>Data da compra: <span th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yy HH:mm:ss')}"></span></h6>
+<!--                    <h6>Data da compra: <span th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yyyy HH:mm:ss')}"></span></h6>-->
                     <br>
                     <tr th:each="item : ${venda.getItensVenda()}">
                         <td th:text="${item.id}"></td>
                         <td th:text="${item.produto.descricao}"></td>
+                        <td th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yyyy HH:mm:ss')}"></td>
                         <td th:text="${#numbers.formatCurrency(item.produto.valor)}"></td>
                         <td th:text="${#numbers.formatDecimal(item.quantidade, 1, 2)}"></td>
                         <td th:text="${#numbers.formatCurrency(item.totalItemVenda())}"></td>

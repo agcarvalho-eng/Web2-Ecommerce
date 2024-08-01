@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <form class="container" action="/venda/buscarDataVenda" method="post">
                         <label><b>Busca específica:</b></label>
-                        <input class="form-control me-2" type="date" placeholder="Buscar por data: dd/mm/aaaa" aria-label="Search" name="dataEHorario">
+                        <input class="form-control me-2" type="date" placeholder="Buscar por data: dd/mm/aaaa" aria-label="Search" name="dataEHorario" style="width: 5cm;">
                         <br>
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
@@ -34,7 +34,7 @@
                     <tr th:each="venda : ${vendas}">
                         <td th:text="${venda.id}"></td>
                         <td th:text="${venda.pessoa.nome}"></td>
-                        <td th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yy HH:mm:ss')}"></td>
+                        <td th:text="${#temporals.format(venda.dataEHorario, 'dd/MM/yyyy HH:mm:ss')}"></td>
                     <!--    <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')} + ' -- ' + ${#dates.format(venda.data, 'HH:mm:ss')}"></td>-->
                         <td th:text="${#numbers.formatCurrency(venda.totalVenda())}"></td>
                         <td> <a class="btn btn-primary" th:href="@{/venda/detail/{id}(id=${venda.id})}" role="button">Detalhar</a> </td>

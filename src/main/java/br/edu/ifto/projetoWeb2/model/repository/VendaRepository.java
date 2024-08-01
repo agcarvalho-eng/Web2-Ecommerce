@@ -7,6 +7,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,9 +31,10 @@ public class VendaRepository {
         return query.getResultList();
     }
 
-    public List<Venda> buscarDataVenda(LocalDateTime date){
-        Query query = em.createQuery("from Venda vd where Lower(vd.dataEHorario) like lower(:d)");
-        query.setParameter("d", "%"+date+"%");
+    public List<Venda> buscarDataVenda(LocalDate date){
+        //método to_char, retorna apenas a data e não data e hora
+        Query query = em.createQuery("from Venda vd where to_char(vd.dataEHorario,'YYYY-MM-DD') = :d");
+        query.setParameter("d", date);
         return query.getResultList();
     }
 

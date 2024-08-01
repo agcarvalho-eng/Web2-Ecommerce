@@ -10,15 +10,15 @@ insert into produto (descricao, valor) values ('Coxinha de frango', 8.50);
 insert into produto (descricao, valor) values ('Pizza de calabresa', 7.35);
 
 --Insert na tabela Venda.
--- insert into Venda (dataehorario, pessoa_id) values (12/07/24 12:00:00, 1);
--- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 2);
+insert into Venda (dataehorario, pessoa_id) values (current_timestamp+1, 1);
+insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 2);
 -- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 1);
 -- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 3);
 -- insert into Venda (dataehorario, pessoa_id) values (current_timestamp, 4);
 
 -- Insert na tabela item_Venda.
--- insert into item_Venda (produto_id, quantidade, venda_id) values (1, 1, 1);
--- insert into item_Venda (produto_id, quantidade, venda_id) values (2, 1, 1);
+insert into item_Venda (produto_id, quantidade, venda_id) values (1, 2, 1);
+insert into item_Venda (produto_id, quantidade, venda_id) values (2, 1, 2);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (3, 1, 2);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (4, 1, 2);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (5, 1, 2);

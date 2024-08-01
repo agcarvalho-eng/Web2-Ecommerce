@@ -120,30 +120,18 @@ public class VendaController {
     @PostMapping("/buscarDataVenda")
     public ModelAndView buscarDataVenda(@RequestParam("dataEHorario") String dataEHorario, ModelMap model) throws ParseException {
         // Verifica se a string dataEHorario está vazia
-        if (dataEHorario == null || dataEHorario.trim().isEmpty()) {
+        if (dataEHorario.isEmpty()) {
             return new ModelAndView("redirect:/venda/list");
         }
-
-        // Remove os espaços em branco ao redor da string
-        dataEHorario = dataEHorario.trim();
-
-        // Define o formatador de data e hora
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
         // Converte a string para LocalDateTime usando o formatador
-        LocalDateTime date;
-        try {
-            date = LocalDateTime.parse(dataEHorario, parser);
-        } catch (DateTimeParseException e) {
-            // Se a data não puder ser analisada, redireciona para a lista de vendas
-            return new ModelAndView("redirect:/venda/list");
-        }
+        LocalDate date = LocalDate.parse(dataEHorario);
 
         // Adiciona o resultado da busca ao modelo
         model.addAttribute("vendas", vendaRepository.buscarDataVenda(date));
 
         // Retorna a view list-carrinho com o modelo atualizado
-        return new ModelAndView("/venda/list-carrinho", model);
+        return new ModelAndView("/venda/list", model);
     }
 
 
