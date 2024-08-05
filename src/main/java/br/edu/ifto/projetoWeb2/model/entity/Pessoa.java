@@ -60,6 +60,12 @@ public abstract class Pessoa implements Serializable {
     @NotBlank
     private String telefone;
 
+    @NotBlank
+    private String email;
+
+    @NotBlank
+    private String senha;
+
     public String getTelefone() {
         return telefone;
     }
@@ -83,6 +89,22 @@ public abstract class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public @NotBlank String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NotBlank String email) {
+        this.email = email;
+    }
+
+    public @NotBlank String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(@NotBlank String senha) {
+        this.senha = senha;
     }
 
     public List<Venda> getVendas() {

@@ -1,6 +1,5 @@
 package br.edu.ifto.projetoWeb2.controller;
 
-import br.edu.ifto.projetoWeb2.model.entity.Pessoa;
 import br.edu.ifto.projetoWeb2.model.entity.PessoaFisica;
 import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
 import jakarta.validation.Valid;
