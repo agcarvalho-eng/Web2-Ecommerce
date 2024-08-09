@@ -29,9 +29,9 @@ insert into item_Venda (produto_id, quantidade, venda_id) values (2, 1, 2);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (5, 3, 5);
 
 -- Insert na tabela pessoa_fisica
-insert into pessoa_fisica (id, nome, cpf, telefone) values (1, 'Joaquim', '11111111111', '1111-1111');
-insert into pessoa_fisica (id, nome, cpf, telefone) values (2, 'Pedro', '22222222222', '2222-2222');
+insert into pessoa_fisica (id, nome, email, cpf, senha, telefone) values (1, 'Joaquim', 'jaoquim@gmail.com', '11111111111', '1234', '1111-1111');
+insert into pessoa_fisica (id, nome, email, cpf, senha, telefone) values (2, 'Pedro', 'pedro@gmail.com', '22222222222', '1234', '2222-2222');
 
 -- Insert na tabela pessoa_juridica
-insert into pessoa_juridica (id, nome, cnpj, telefone) values (3, 'Restaurante Bom de Prato', '33333333000333', '3333-3333');
-insert into pessoa_juridica (id, nome, cnpj, telefone) values (4, 'Restaurante Tudo de Bom', '44444444000444', '4444-4444');
+insert into pessoa_juridica (id, nome, email, cnpj, senha, telefone) values (3, 'Restaurante Bom de Prato', 'bomdeprato@gmail.com', '33333333000333', '1234', '3333-3333');
+insert into pessoa_juridica (id, nome, email, cnpj, senha, telefone) values (4, 'Restaurante Tudo de Bom', 'tudodebom@gmail.com', '44444444000444', '1234', '4444-4444');

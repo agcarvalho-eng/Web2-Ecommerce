@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -37,11 +38,13 @@ public class PessoaFisicaController {
         return new ModelAndView("/pessoa-fisica/list", model); //Aponta o caminho da view no projeto em /templates/pessoa-fisica.
     }
     @PostMapping("/save")
-    public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result) {
+    public ModelAndView save(@Valid PessoaFisica pessoaFisica, BindingResult result,
+                             RedirectAttributes attributes) {
         if(result.hasErrors()) {
             return new ModelAndView("/pessoa-fisica/form");
         }
         pessoaFisicaRepository.save(pessoaFisica);
+        attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
         return new ModelAndView("redirect:/pessoaFisica/list");
     }
 
@@ -66,7 +69,7 @@ public class PessoaFisicaController {
         return new ModelAndView("/pessoa-fisica/form", model); // Aponta o caminho da view no projeto em /templates/pessoa-fisica).
     }
 
-    @PostMapping("/buscarNomePF")
+    @GetMapping("/buscarNomePF")
     public ModelAndView buscarNomePF(@RequestParam("nome") String nome, ModelMap model){
         if(nome.isBlank()){
             return new ModelAndView("redirect:/pessoaFisica/list");

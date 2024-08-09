@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,18 +18,10 @@ public class LoginController {
     @Autowired
     LoginRepository loginRepository;
 
-    @PostMapping("/login")
-    public ModelAndView login(@RequestParam("username") String username,
-                              @RequestParam("password") String password, ModelMap model) {
-        boolean usuarioValido = loginRepository.validarUsuario(username, password);
+    @GetMapping()
+    public ModelAndView login() {
 
-        if (usuarioValido) {
-            // Encaminhando para a página Home (index.html).
-            return new ModelAndView("forward:/home");
-        } else {
-            // Retornando para a tela de login com erro.
-            model.addAttribute("error", "erro");
-            return new ModelAndView("forward:/login.html", model);
-        }
+            return new ModelAndView("autenticacao/login");
+
     }
 }

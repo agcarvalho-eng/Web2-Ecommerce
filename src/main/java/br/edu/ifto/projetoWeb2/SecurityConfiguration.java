@@ -24,16 +24,22 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(
                     customizer ->
                             customizer
-                                    .requestMatchers("/pessoafisica/form").permitAll()
-                                    .requestMatchers("/pessoafisica/list").hasAnyRole("ADMIN")
-                                    .requestMatchers(HttpMethod.POST,"/pessoafisica/save").permitAll()
+                                    .requestMatchers("/pessoaFisica/form").permitAll()
+                                    .requestMatchers("/pessoaFisica/list").hasAnyRole("ADMIN")
+                                    .requestMatchers("pessoaJuridica/form").permitAll()
+                                    .requestMatchers("venda/list").permitAll()
+                                    .requestMatchers("/pessoaJuridica/list").hasAnyRole("ADMIN")
+                                    .requestMatchers(HttpMethod.POST, "/pessoaFisica/buscarNomePF").hasAnyRole("ADMIN")
+                                    .requestMatchers(HttpMethod.POST, "/pessoaJuridica/buscarNomePJ").hasAnyRole("ADMIN")
+                                    .requestMatchers(HttpMethod.POST,"/pessoaFisica/save").permitAll()
+                                    .requestMatchers(HttpMethod.POST, "/pessoaJuridica/save").permitAll()
                                     .anyRequest() //define que a configuração é válida para qualquer requisição.
                                     .authenticated() //define que o usuário precisa estar autenticado.
             )
             .formLogin(customizer ->
                     customizer
                             .loginPage("/login") //passamos como parâmetro a URL para acesso à página de login que criamos
-                            .defaultSuccessUrl("/pessoafisica/form", true)
+                            .defaultSuccessUrl("/produto/list-vitrine", true)
                             .permitAll() //define que essa página pode ser acessada por todos, independentemente do usuário estar autenticado ou não.
             )
             .httpBasic(withDefaults()) //configura a autenticação básica (usuário e senha)

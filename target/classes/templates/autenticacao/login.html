@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body style="height: 100%; display: flex; justify-content: center; align-items: center;">
+<div class="text-center" style="width: 100%; max-width: 500px;">
+    <div style="text-align: center; margin-bottom: 1rem;">
+        <img src="/img/logomarca.jpg" alt="Logomarca da Empresa" style="width: 4cm; height: 3cm;">
+    </div>
+    <h1 style="text-align: center; margin-bottom: 1rem;"><b>VENDA FÁCIL</b></h1>
+    <h1 style="text-align: center; margin-bottom: 1rem;"><b>Venda de produtos alimentícius</b></h1>
+
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">Usuário/senha inválidos!</div>
+    </div>
+
+    <div th:if="${param.logout}">
+        <div class="alert alert-info">Usuário não logado!</div>
+    </div>
+
+    <div>
+        <h3 th:text="${mensagem}" th:if="${mensagem}" class="alert alert-success"></h3>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header text-center">Informe usuário e senha</h5>
+        <div class="card-body">
+            <form th:action="@{/login}" method="post">
+                <div class="form-group mb-3">
+                    <label style="width: 100%;">Login:<input class="form-control" type="text" name="username" placeholder="Email"/></label>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label style="width: 100%;">Senha:<input class="form-control" type="password" name="password" placeholder="Senha"/></label>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div>
+        <form th:action="@{/pessoaFisica/form}" method="get">
+            <button type="submit" class="btn btn-primary">Cadastrar pessoa física</button>
+        </form>
+        <br>
+        <form th:action="@{/pessoaJuridica/form}" method="get">
+            <button type="submit" class="btn btn-primary">Cadastrar pessoa jurídica</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

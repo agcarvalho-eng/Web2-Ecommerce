@@ -93,7 +93,7 @@ public class VendaController {
         venda.setPessoa(p);
         venda.setDataEHorario(LocalDateTime.now());
         repository.save(venda);
-        session.invalidate();
+        session.removeAttribute("venda");
         return new ModelAndView("redirect:/venda/list");
     }
 

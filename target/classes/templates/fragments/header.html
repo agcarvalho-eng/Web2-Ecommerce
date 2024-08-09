@@ -1,5 +1,4 @@
-
-<header class="container" th:fragment="header">
+<header class="container" th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <div class="bg-cabecalho">
         <img src="/img/logomarca.jpg" alt="Logomarca da Empresa" style="width: 4cm; height: 3cm;">
@@ -24,7 +23,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/pessoaFisica/form">Pessoa Física</a></li>
                             <li><a class="dropdown-item" href="/pessoaJuridica/form">Pessoa Jurídica</a></li>
-                            <li><a class="dropdown-item" href="/produto/form">Produto</a></li>
+                            <li><a class="dropdown-item" href="/produto/form" sec:authorize="hasAnyRole('ADMIN')">Produto</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -32,8 +31,8 @@
                             Relatórios
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/pessoaFisica/list">Pessoas Físicas</a></li>
-                            <li><a class="dropdown-item" href="/pessoaJuridica/list">Pessoas Jurídicas</a></li>
+                            <li><a class="dropdown-item" href="/pessoaFisica/list" sec:authorize="hasAnyRole('ADMIN')">Pessoas Físicas</a></li>
+                            <li><a class="dropdown-item" href="/pessoaJuridica/list" sec:authorize="hasAnyRole('ADMIN')">Pessoas Jurídicas</a></li>
                             <li><a class="dropdown-item" href="/produto/list">Produtos</a></li>
                             <li><a class="dropdown-item" href="/venda/list">Vendas</a></li>
                         </ul>
@@ -64,6 +63,12 @@
         </div>
     </nav>
     <br>
+    <div style="text-align: right;">
+        <h3>Olá <strong sec:authentication="name"></strong></h3>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
 </header>
 
 

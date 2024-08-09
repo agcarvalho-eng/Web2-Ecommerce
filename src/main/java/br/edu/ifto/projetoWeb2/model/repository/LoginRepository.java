@@ -13,9 +13,10 @@ public class LoginRepository {
     private EntityManager em;
 
     public boolean validarUsuario(String username, String password) {
+        Long contador = 0L;
         // Primeiro verifica na tabela pessoaFisica.
         String queryPf = "SELECT COUNT(pf) FROM PessoaFisica pf WHERE pf.username = :username AND pf.password = :password";
-        Long contador = (Long) em.createQuery(queryPf)
+        contador = (Long) em.createQuery(queryPf)
         //String queryPessoaFisica = "SELECT COUNT(pf) FROM PessoaFisica pf WHERE pf.username = :username AND pf.password = :password";
 //        Long count = (Long) em.createQuery(queryPessoaFisica)
                                          .setParameter("username", username)
