@@ -22,18 +22,18 @@
                         <input class="form-control" type="text" th:field="*{cpf}" th:errorclass="is-invalid" placeholder="CPF (apenas números)">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></label>
                     </div>
-                    <div class="mb-2 col-lg-6">
-                        <input class="form-control" type="text" th:field="*{email}" th:errorclass="is-invalid" placeholder="Email">
-                        <label class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
-                    </div>
+<!--                    <div class="mb-2 col-lg-6">-->
+<!--                        <input class="form-control" type="text" th:field="*{email}" th:errorclass="is-invalid" placeholder="Email">-->
+<!--                        <label class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>-->
+<!--                    </div>-->
                     <div class="mb-2 col-lg-6">
                         <input class="form-control" type="text" th:field="*{telefone}" th:errorclass="is-invalid" placeholder="Telefone">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></label>
                     </div>
-                    <div class="mb-2 col-lg-6">
-                        <input class="form-control" type="text" th:field="*{senha}" th:errorclass="is-invalid" placeholder="Senha">
-                        <label class="invalid-feedback" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></label>
-                    </div>
+<!--                    <div class="mb-2 col-lg-6">-->
+<!--                        <input class="form-control" type="text" th:field="*{senha}" th:errorclass="is-invalid" placeholder="Senha">-->
+<!--                        <label class="invalid-feedback" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></label>-->
+<!--                    </div>-->
 
                     <div class="mb-2 col-lg-6">
                         <input type="submit" value="Enviar">

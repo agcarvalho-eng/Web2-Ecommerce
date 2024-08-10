@@ -29,9 +29,29 @@ insert into item_Venda (produto_id, quantidade, venda_id) values (2, 1, 2);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (5, 3, 5);
 
 -- Insert na tabela pessoa_fisica
-insert into pessoa_fisica (id, nome, email, cpf, senha, telefone) values (1, 'Joaquim', 'jaoquim@gmail.com', '11111111111', '1234', '1111-1111');
-insert into pessoa_fisica (id, nome, email, cpf, senha, telefone) values (2, 'Pedro', 'pedro@gmail.com', '22222222222', '1234', '2222-2222');
+insert into pessoa_fisica (id, nome, cpf, telefone) values (1, 'Adriano', '11111111111', '1111-1111');
+insert into pessoa_fisica (id, nome, cpf, telefone) values (2, 'Gabriel', '22222222222', '2222-2222');
+insert into pessoa_fisica (id, nome, cpf, telefone) values (3, 'Fernanda', '33333333333', '3333-3333');
 
 -- Insert na tabela pessoa_juridica
-insert into pessoa_juridica (id, nome, email, cnpj, senha, telefone) values (3, 'Restaurante Bom de Prato', 'bomdeprato@gmail.com', '33333333000333', '1234', '3333-3333');
-insert into pessoa_juridica (id, nome, email, cnpj, senha, telefone) values (4, 'Restaurante Tudo de Bom', 'tudodebom@gmail.com', '44444444000444', '1234', '4444-4444');
+insert into pessoa_juridica (id, nome, cnpj, telefone) values (3, 'Restaurante Bom Gosto', '33333333000333', '3333-3333');
+insert into pessoa_juridica (id, nome, cnpj, telefone) values (4, 'Restaurante Comida Boa', '44444444000444', '4444-4444');
+
+-- Insert na tabela usuario
+insert into usuario (id, login, password) values (1, 'adriano@gmail.com', '123');
+insert into usuario (id, login, password) values (2, 'fernanda@gmail.com', '123');
+insert into usuario (id, login, password) values (3, 'gabriel@gmail.com', '123');
+insert into usuario (id, login, password) values (4, 'bomgosto@gmail.com', '123');
+insert into usuario (id, login, password) values (5, 'comidaboa@gmail.com', '123');
+
+-- Insert na tabela role
+insert into role (id, nome) values (1, 'ROLE_ADMIN');
+insert into role (id, nome) values (2, 'ROLE_USER');
+insert into role (id, nome) values (3, 'ROLE_GERENTE');
+
+-- Insert na tabela usuario_roles
+-- insert into usuario_roles (1, 1);
+-- insert into usuario_roles (2, 2);
+-- insert into usuario_roles (3, 3);
+-- insert into usuario_roles (4, 2);
+-- insert into usuario_roles (5, 2);

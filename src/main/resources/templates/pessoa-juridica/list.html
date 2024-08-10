@@ -24,7 +24,7 @@
                         <th>PJ ID</th>
                         <th>Nome</th>
                         <th>CNPJ</th>
-                        <th>Email</th>
+<!--                        <th>Email</th>-->
                         <th>Telefone</th>
                         <th colspan="2">Operações</th>
                     </tr>
@@ -34,7 +34,7 @@
                         <td th:text="${p.id}"> </td>
                         <td th:text="${p.nome}"></td>
                         <td th:text="${p.cnpj}"></td>
-                        <td th:text="${p.email}"></td>
+<!--                        <td th:text="${p.email}"></td>-->
                         <td th:text="${p.telefone}"></td>
                         <td> <a class="btn btn-primary" th:href="@{/pessoaJuridica/edit/{id}(id=${p.id})}" role="button">Editar</a> </td>
                         <td> <a class="btn btn-danger" onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
