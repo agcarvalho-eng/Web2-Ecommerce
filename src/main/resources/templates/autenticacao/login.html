@@ -27,7 +27,7 @@
     </div>
 
     <div>
-        <h3 th:text="${mensagem}" th:if="${mensagem}" class="alert alert-success"></h3>
+        <h4 th:text="${mensagem}" th:if="${mensagem}" class="alert alert-success"></h4>
     </div>
 
     <div class="card">
@@ -50,13 +50,19 @@
     </div>
     <br>
     <div>
-        <form th:action="@{/pessoaFisica/form}" method="get">
-            <button type="submit" class="btn btn-primary">Cadastrar pessoa física</button>
-        </form>
-        <br>
-        <form th:action="@{/pessoaJuridica/form}" method="get">
-            <button type="submit" class="btn btn-primary">Cadastrar pessoa jurídica</button>
-        </form>
+        <span>
+            <h5>Não tenho cadastro!</h5>
+            <a href="/pessoaFisica/form">Cliente pessoa física</a>
+            <br>
+            <a href="/pessoaJuridica/form">Cliente pessoa juridica</a>
+        </span>
+<!--        <form th:action="@{/pessoaFisica/form}" method="get">-->
+<!--            <button type="submit" class="btn btn-primary">Cadastrar pessoa física</button>-->
+<!--        </form>-->
+<!--        <br>-->
+<!--        <form th:action="@{/pessoaJuridica/form}" method="get">-->
+<!--            <button type="submit" class="btn btn-primary">Cadastrar pessoa jurídica</button>-->
+<!--        </form>-->
     </div>
 </div>
 </body>

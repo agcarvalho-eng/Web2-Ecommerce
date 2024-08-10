@@ -8,7 +8,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary nav-bg-color" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -17,7 +18,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" sec:authorize="hasAnyRole('ADMIN')">
                             Cadastro
                         </a>
                         <ul class="dropdown-menu">
@@ -27,7 +28,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" sec:authorize="hasAnyRole('ADMIN')">
                             Relatórios
                         </a>
                         <ul class="dropdown-menu">
@@ -63,8 +64,8 @@
         </div>
     </nav>
     <br>
-    <div style="text-align: right;">
-        <h3>Olá <strong sec:authentication="name"></strong></h3>
+    <div style="text-align: right;" sec:authorize="isAuthenticated() and #authentication.name != 'anonymousUser'">
+        <h5>Olá <strong sec:authentication="name"></strong></h5>
         <form th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-primary">Logout</button>
         </form>

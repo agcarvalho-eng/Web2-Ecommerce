@@ -42,7 +42,7 @@ public class ProdutoController {
     }
 
     //@Pathvariable ou requestparam
-    @PostMapping("/buscarDescricaoProduto")
+    @GetMapping("/buscarDescricaoProduto")
     public ModelAndView buscarDescricaoProduto(@RequestParam("descricao") String descricao, ModelMap model) {
         if(descricao.isEmpty()){
            return new ModelAndView("redirect:/produto/list");

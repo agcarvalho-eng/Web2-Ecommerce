@@ -94,7 +94,7 @@ public class VendaController {
         venda.setDataEHorario(LocalDateTime.now());
         repository.save(venda);
         session.removeAttribute("venda");
-        return new ModelAndView("redirect:/venda/list");
+        return new ModelAndView("redirect:/produto/list-vitrine");
     }
 
     @GetMapping("/remove/{id}")
@@ -117,7 +117,7 @@ public class VendaController {
     }
 
 
-    @PostMapping("/buscarDataVenda")
+    @GetMapping("/buscarDataVenda")
     public ModelAndView buscarDataVenda(@RequestParam("dataEHorario") String dataEHorario, ModelMap model) throws ParseException {
         // Verifica se a string dataEHorario está vazia
         if (dataEHorario.isEmpty()) {
