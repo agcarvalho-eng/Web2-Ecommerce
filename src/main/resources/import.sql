@@ -38,20 +38,17 @@ insert into pessoa_juridica (id, nome, cnpj, telefone) values (3, 'Restaurante B
 insert into pessoa_juridica (id, nome, cnpj, telefone) values (4, 'Restaurante Comida Boa', '44444444000444', '4444-4444');
 
 -- Insert na tabela usuario
-insert into usuario (id, login, password) values (1, 'adriano@gmail.com', '123');
-insert into usuario (id, login, password) values (2, 'fernanda@gmail.com', '123');
-insert into usuario (id, login, password) values (3, 'gabriel@gmail.com', '123');
-insert into usuario (id, login, password) values (4, 'bomgosto@gmail.com', '123');
-insert into usuario (id, login, password) values (5, 'comidaboa@gmail.com', '123');
+insert into usuario (login, password) values ('adriano@gmail.com', '123');
+insert into usuario (login, password) values ('gabriel@gmail.com', '123');
+
 
 -- Insert na tabela role
-insert into role (id, nome) values (1, 'ROLE_ADMIN');
-insert into role (id, nome) values (2, 'ROLE_USER');
-insert into role (id, nome) values (3, 'ROLE_GERENTE');
+insert into role (nome) values ('ROLE_ADMIN');
+insert into role (nome) values ('ROLE_USER');
+insert into role (nome) values ('ROLE_GERENTE');
 
 -- Insert na tabela usuario_roles
--- insert into usuario_roles (1, 1);
--- insert into usuario_roles (2, 2);
--- insert into usuario_roles (3, 3);
--- insert into usuario_roles (4, 2);
--- insert into usuario_roles (5, 2);
+insert into usuario_roles (roles_id, usuarios_id) values (1, 1);
+insert into usuario_roles (roles_id, usuarios_id) values (2, 2);
+
+

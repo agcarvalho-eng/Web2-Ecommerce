@@ -32,6 +32,10 @@ public class Usuario implements Serializable, UserDetails {
         return this.password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return this.login;

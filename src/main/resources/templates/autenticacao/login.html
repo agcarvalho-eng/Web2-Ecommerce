@@ -15,11 +15,12 @@
     <div style="text-align: center; margin-bottom: 1rem;">
         <img src="/img/logomarca.jpg" alt="Logomarca da Empresa" style="width: 4cm; height: 3cm;">
     </div>
+
     <h1 style="text-align: center; margin-bottom: 1rem;"><b>VENDA FÁCIL</b></h1>
     <h1 style="text-align: center; margin-bottom: 1rem;"><b>Venda de produtos alimentícius</b></h1>
 
-    <div th:if="${param.error}">
-        <div class="alert alert-danger">Usuário/senha inválidos!</div>
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        <div>Usuário ou senha inválidos!</div>
     </div>
 
     <div th:if="${param.logout}">
@@ -27,7 +28,9 @@
     </div>
 
     <div>
-        <h4 th:text="${mensagem}" th:if="${mensagem}" class="alert alert-success"></h4>
+        <h4 th:if="${mensagem}" class="alert alert-success">
+            <span th:text="${mensagem}"></span>
+        </h4>
     </div>
 
     <div class="card">
@@ -52,10 +55,15 @@
     <div>
         <span>
             <h5>Não tenho cadastro!</h5>
-            <a href="/pessoaFisica/form">Cliente pessoa física</a>
-            <br>
-            <br>
-            <a href="/pessoaJuridica/form">Cliente pessoa juridica</a>
+            <form th:action="@{/cadastroUsuario}" method="get">
+                <button href="/cadastroUsuario" class="btn btn-outline-primary fw-bold"
+                        type="submit">Cadastrar pessoa física</button>
+            </form>
+
+            <form th:action="@{/cadastroUsuario}" method="get">
+                <button href="/cadastroUsuario" class="btn btn-outline-primary fw-bold"
+                        type="submit">Cadastrar pessoa jurídica</button>
+            </form>
         </span>
 <!--        <form th:action="@{/pessoaFisica/form}" method="get">-->
 <!--            <button type="submit" class="btn btn-primary">Cadastrar pessoa física</button>-->

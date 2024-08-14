@@ -28,7 +28,7 @@ class UsuarioDetailsConfig implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Usuario usuario = repository.usuario(login);
+        Usuario usuario = repository.loadUserByUsername(login);
         if(usuario == null){
             throw new UsernameNotFoundException("Usuário não encontrado!");
         }

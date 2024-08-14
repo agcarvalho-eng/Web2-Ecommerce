@@ -45,7 +45,7 @@ public class SecurityConfiguration {
             .formLogin(customizer ->
                     customizer
                             .loginPage("/login") //passamos como parâmetro a URL para acesso à página de login que criamos
-                            .defaultSuccessUrl("/pessoafisica/form", true)
+                            .defaultSuccessUrl("/home", true)
                             .permitAll() //define que essa página pode ser acessada por todos, independentemente do usuário estar autenticado ou não.
             )
             .httpBasic(withDefaults()) //configura a autenticação básica (usuário e senha)
