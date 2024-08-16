@@ -55,15 +55,17 @@
     <div>
         <span>
             <h5>Não tenho cadastro!</h5>
-            <form th:action="@{/cadastroUsuario}" method="get">
-                <button href="/cadastroUsuario" class="btn btn-outline-primary fw-bold"
-                        type="submit">Cadastrar pessoa física</button>
-            </form>
-
-            <form th:action="@{/cadastroUsuario}" method="get">
-                <button href="/cadastroUsuario" class="btn btn-outline-primary fw-bold"
-                        type="submit">Cadastrar pessoa jurídica</button>
-            </form>
+            <br>
+<!--            <form th:action="@{/cadastroUsuario}" method="get">-->
+<!--                <button href="/cadastroUsuario" class="btn btn-outline-primary fw-bold"-->
+<!--                        type="submit">Cadastrar pessoa física</button>-->
+<!--            </form>-->
+            <a th:href="@{/login/cadastroUsuario}">Cadastrar novo usuário</a>
+            <br>
+<!--            <form th:action="@{/cadastroUsuario}" method="get">-->
+<!--                <button href="/cadastroUsuario" class="btn btn-outline-primary fw-bold"-->
+<!--                        type="submit">Cadastrar pessoa jurídica</button>-->
+<!--            </form>-->
         </span>
 <!--        <form th:action="@{/pessoaFisica/form}" method="get">-->
 <!--            <button type="submit" class="btn btn-primary">Cadastrar pessoa física</button>-->

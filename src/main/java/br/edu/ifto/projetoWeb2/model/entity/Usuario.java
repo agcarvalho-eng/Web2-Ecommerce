@@ -1,6 +1,8 @@
 package br.edu.ifto.projetoWeb2.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
@@ -15,7 +17,9 @@ public class Usuario implements Serializable, UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String login;
+    @Column(unique = true)
+    @NotBlank
+    private String username;
 
     private String password;
 
@@ -27,18 +31,18 @@ public class Usuario implements Serializable, UserDetails {
         return roles;
     }
 
-    @Override
-    public String getPassword() {
-        return this.password;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return this.login;
+        return username;
     }
 
     @Override
@@ -59,5 +63,17 @@ public class Usuario implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setUsername(@NotBlank String username) {
+        this.username = username;
     }
 }

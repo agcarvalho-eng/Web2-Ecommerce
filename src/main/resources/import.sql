@@ -38,8 +38,8 @@ insert into pessoa_juridica (id, nome, cnpj, telefone) values (3, 'Restaurante B
 insert into pessoa_juridica (id, nome, cnpj, telefone) values (4, 'Restaurante Comida Boa', '44444444000444', '4444-4444');
 
 -- Insert na tabela usuario
-insert into usuario (login, password) values ('adriano@gmail.com', '123');
-insert into usuario (login, password) values ('gabriel@gmail.com', '123');
+insert into usuario (username, password) values ('adriano@gmail.com', '$2a$10$8RcSWKLCSv8IXR4T4CL3muanLWyZ83bn3oHzcrkF6xlOWP7x7waf6');
+insert into usuario (username, password) values ('gabriel@gmail.com', '$2a$10$8RcSWKLCSv8IXR4T4CL3muanLWyZ83bn3oHzcrkF6xlOWP7x7waf6');
 
 
 -- Insert na tabela role

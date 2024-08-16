@@ -1,4 +1,4 @@
-package br.edu.ifto.projetoWeb2;
+package br.edu.ifto.projetoWeb2.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -30,10 +27,14 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(
                     customizer ->
                             customizer
+                                    .requestMatchers("/img/**").permitAll()
+                                    .requestMatchers("/login/cadastroUsuario").permitAll()
+                                    .requestMatchers(HttpMethod.POST,"/login/persistirNovoUsuario").permitAll()
                                     .requestMatchers("/pessoaFisica/form").permitAll()
                                     .requestMatchers("/pessoaFisica/list").hasAnyRole("ADMIN")
                                     .requestMatchers("pessoaJuridica/form").permitAll()
                                     .requestMatchers("venda/list").permitAll()
+                                    .requestMatchers("/autenticacao/cadastroUsuario").permitAll()
                                     .requestMatchers("/pessoaJuridica/list").hasAnyRole("ADMIN")
                                     .requestMatchers(HttpMethod.POST, "/pessoaFisica/buscarNomePF").hasAnyRole("ADMIN")
                                     .requestMatchers(HttpMethod.POST, "/pessoaJuridica/buscarNomePJ").hasAnyRole("ADMIN")
@@ -45,7 +46,7 @@ public class SecurityConfiguration {
             .formLogin(customizer ->
                     customizer
                             .loginPage("/login") //passamos como parâmetro a URL para acesso à página de login que criamos
-                            .defaultSuccessUrl("/home", true)
+                            .defaultSuccessUrl("/produto/list-vitrine", true)
                             .permitAll() //define que essa página pode ser acessada por todos, independentemente do usuário estar autenticado ou não.
             )
             .httpBasic(withDefaults()) //configura a autenticação básica (usuário e senha)
