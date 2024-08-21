@@ -23,4 +23,6 @@ public class UsuarioRepository {
     public void save(Usuario novoUsuario) {
         em.persist(novoUsuario);
     }
+
+
 }

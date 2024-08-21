@@ -21,10 +21,22 @@ public class Usuario implements Serializable, UserDetails {
     @NotBlank
     private String username;
 
+    @NotBlank
     private String password;
+
+    @OneToOne
+    private Pessoa pessoa;
 
     @ManyToMany
     private List<Role> roles = new ArrayList<>();
+
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Usuario() {
+        }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,5 +87,21 @@ public class Usuario implements Serializable, UserDetails {
 
     public void setUsername(@NotBlank String username) {
         this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

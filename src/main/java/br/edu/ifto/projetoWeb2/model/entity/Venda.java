@@ -34,6 +34,9 @@ public class Venda implements Serializable {
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
     private List<ItemVenda> itensVenda = new ArrayList<>();
 
+    @ManyToOne
+    private Pessoa pessoa;
+
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -41,9 +44,6 @@ public class Venda implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-
-    @ManyToOne
-    private Pessoa pessoa;
 
     public Long getId() {
         return id;

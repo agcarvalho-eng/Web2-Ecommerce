@@ -60,9 +60,16 @@ public abstract class Pessoa implements Serializable {
     @NotBlank
     private String telefone;
 
+    @OneToOne
+    private Usuario usuarioLogado;
+
+    @OneToMany(mappedBy = "pessoa")
+    private List<Venda> comprasCliente;
+
     public String getTelefone() {
         return telefone;
     }
+
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
@@ -92,5 +99,21 @@ public abstract class Pessoa implements Serializable {
 
     public void setVendas(List<Venda> vendas) {
         this.vendas = vendas;
+    }
+
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
+    }
+
+    public List<Venda> getComprasCliente() {
+        return comprasCliente;
+    }
+
+    public void setComprasCliente(List<Venda> comprasCliente) {
+        this.comprasCliente = comprasCliente;
     }
 }
