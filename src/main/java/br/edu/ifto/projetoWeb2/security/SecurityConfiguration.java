@@ -28,9 +28,9 @@ public class SecurityConfiguration {
                     customizer ->
                             customizer
                                     .requestMatchers("/img/**").permitAll()
-                                    .requestMatchers("/login/cadastroUsuario").permitAll()
-                                    .requestMatchers("/login/cadastroUsuarioPf").permitAll()
-                                    .requestMatchers("/login/cadastroUsuarioPj").permitAll()
+//                                    .requestMatchers("/login/cadastroUsuario").permitAll()
+//                                    .requestMatchers("/login/cadastroUsuarioPf").permitAll()
+//                                    .requestMatchers("/login/cadastroUsuarioPj").permitAll()
                                     .requestMatchers(HttpMethod.POST,"/login/persistirNovoUsuario").permitAll()
                                     .requestMatchers(HttpMethod.POST,"/login/persistirNovoUsuarioPf").permitAll()
                                     .requestMatchers(HttpMethod.POST,"/login/persistirNovoUsuarioPj").permitAll()

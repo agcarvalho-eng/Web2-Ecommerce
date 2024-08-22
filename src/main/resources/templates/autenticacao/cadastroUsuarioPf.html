@@ -32,11 +32,11 @@
         </div>
         <br>
         <div class="card-body">
-            <form class="container" th:action="@{/login/persistirNovoUsuarioPf}" th:object="${pessoaFisica}" method="post">
+            <form class="container" th:action="@{/login/persistirNovoUsuarioPf}" method="post">
 
-                <div class="form-row">
+                <div class="form-row" th:object="${pessoaFisica}">
                     <div class="mb-2 col-lg-6">
-                        <input type="hidden" th:field="*{id}">
+<!--                        <input type="hidden" th:field="*{id}">-->
                         <input class="form-control" type="text" th:field="*{nome}" th:errorclass="is-invalid" placeholder="Nome">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></label>
                     </div>
@@ -48,6 +48,9 @@
                         <input class="form-control" type="text" th:field="*{telefone}" th:errorclass="is-invalid" placeholder="Telefone">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></label>
                     </div>
+                <div/>
+                <div th:object="${usuario}">
+                    <div>
                         <input class="form-control" type="text" th:field="*{username}" th:errorclass="is-invalid" placeholder="Email">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
                     </div>

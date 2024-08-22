@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,9 +25,6 @@ public class Usuario implements Serializable, UserDetails {
 
     @NotBlank
     private String password;
-
-    @OneToOne
-    private Pessoa pessoa;
 
     @ManyToMany
     private List<Role> roles = new ArrayList<>();
@@ -78,7 +77,7 @@ public class Usuario implements Serializable, UserDetails {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public void setRoles(List<Role> roles) {
@@ -97,11 +96,4 @@ public class Usuario implements Serializable, UserDetails {
         this.id = id;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
 }

@@ -48,6 +48,7 @@
                         <input class="form-control" type="text" th:field="*{telefone}" th:errorclass="is-invalid" placeholder="Telefone">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></label>
                     </div>
+                    <div>
                         <input class="form-control" type="text" th:field="*{username}" th:errorclass="is-invalid" placeholder="Email">
                         <label class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
                     </div>

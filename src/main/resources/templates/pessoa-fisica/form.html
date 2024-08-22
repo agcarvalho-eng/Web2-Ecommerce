@@ -35,6 +35,16 @@
 <!--                        <label class="invalid-feedback" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></label>-->
 <!--                    </div>-->
 
+                    <div>
+                        <input class="form-control" type="text" th:field="*{usuario.username}" th:errorclass="is-invalid" placeholder="Email">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('usuario.username')}" th:errors="*{usuario.username}"></label>
+                    </div>
+                    <br>
+                    <div class="mb-4 col-lg-10">
+                        <input class="form-control" type="password" th:field="*{usuario.password}" th:errorclass="is-invalid" placeholder="Senha">
+                        <label class="invalid-feedback" th:if="${#fields.hasErrors('usuario.password')}" th:errors="*{usuario.password}"></label>
+                    </div>
+
                     <div class="mb-2 col-lg-6">
                         <input type="submit" value="Enviar">
                     </div>

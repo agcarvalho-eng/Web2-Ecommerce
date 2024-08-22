@@ -60,8 +60,8 @@ public abstract class Pessoa implements Serializable {
     @NotBlank
     private String telefone;
 
-    @OneToOne
-    private Usuario usuarioLogado;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "pessoa")
     private List<Venda> comprasCliente;
@@ -101,12 +101,12 @@ public abstract class Pessoa implements Serializable {
         this.vendas = vendas;
     }
 
-    public Usuario getUsuarioLogado() {
-        return usuarioLogado;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioLogado(Usuario usuarioLogado) {
-        this.usuarioLogado = usuarioLogado;
+    public void setUsuario(Usuario usuarioLogado) {
+        this.usuario = usuarioLogado;
     }
 
     public List<Venda> getComprasCliente() {
