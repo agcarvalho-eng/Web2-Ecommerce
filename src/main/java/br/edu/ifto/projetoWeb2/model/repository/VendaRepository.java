@@ -46,4 +46,10 @@ public class VendaRepository {
     public void update(Venda venda){
         em.merge(venda);
     }
+
+    public List<Venda> listarVendasUsuarioLogado(Long id) {
+        Query query = em.createQuery("from Venda where pessoa.id = ?1", Venda.class);
+        query.setParameter(1, id);
+        return query.getResultList();
+    }
 }

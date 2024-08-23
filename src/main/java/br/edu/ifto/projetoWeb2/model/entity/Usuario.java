@@ -3,6 +3,7 @@ package br.edu.ifto.projetoWeb2.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,6 +30,9 @@ public class Usuario implements Serializable, UserDetails {
     @ManyToMany
     private List<Role> roles = new ArrayList<>();
 
+    @OneToOne(mappedBy = "usuario")
+    private Pessoa pessoa;
+
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
@@ -36,6 +40,14 @@ public class Usuario implements Serializable, UserDetails {
 
     public Usuario() {
         }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

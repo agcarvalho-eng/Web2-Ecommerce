@@ -1,16 +1,13 @@
 package br.edu.ifto.projetoWeb2.controller;
 
-import br.edu.ifto.projetoWeb2.model.entity.ItemVenda;
-import br.edu.ifto.projetoWeb2.model.entity.Pessoa;
-import br.edu.ifto.projetoWeb2.model.entity.Produto;
-import br.edu.ifto.projetoWeb2.model.entity.Venda;
-import br.edu.ifto.projetoWeb2.model.repository.PessoaFisicaRepository;
-import br.edu.ifto.projetoWeb2.model.repository.ProdutoRepository;
-import br.edu.ifto.projetoWeb2.model.repository.VendaRepository;
+import br.edu.ifto.projetoWeb2.model.entity.*;
+import br.edu.ifto.projetoWeb2.model.repository.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -46,14 +43,30 @@ public class VendaController {
 
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
+
     @Autowired
     private VendaRepository vendaRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
     @GetMapping("/list")
     public ModelAndView listar(ModelMap model){
         model.addAttribute("msg", "Lista de Vendas");
         model.addAttribute("vendas", repository.vendas());
         return new ModelAndView(("/venda/list"), model);//Aponta o caminho da view no projeto em /templates/venda.
+    }
+
+    @GetMapping("/minhasCompras")
+    public ModelAndView minhasCompras(ModelMap model){
+        model.addAttribute("msg", "Lista de Vendas");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Pessoa p = pessoaRepository.buscarPorNomeUsuario(auth.getName());
+        model.addAttribute("vendas", vendaRepository.listarVendasUsuarioLogado(p.getId()));
+        return new ModelAndView(("/venda/list"), model);//Aponta o caminho da view no projeto em /templates/venda/list.html
     }
 
     @PostMapping("/addItem")
@@ -89,7 +102,10 @@ public class VendaController {
             model.addAttribute("erroItem","Você precisa informar um item para a venda.");
             return new ModelAndView("/venda/carrinhoCompra");
         }
-        Pessoa p = pessoaFisicaRepository.pessoaFisica(1L);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Pessoa p = pessoaRepository.buscarPorNomeUsuario(auth.getName());
+        Role r = roleRepository.role(2L);
+        p.getUsuario().getRoles().add(r);
         venda.setPessoa(p);
         venda.setDataEHorario(LocalDateTime.now());
         repository.save(venda);

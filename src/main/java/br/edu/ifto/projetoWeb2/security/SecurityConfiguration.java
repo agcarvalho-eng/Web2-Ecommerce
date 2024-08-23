@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                                     .requestMatchers("/pessoaFisica/list").hasAnyRole("ADMIN")
                                     .requestMatchers("pessoaJuridica/form").permitAll()
                                     .requestMatchers("venda/list").permitAll()
+                                    .requestMatchers("venda/minhasCompras").permitAll()
                                     .requestMatchers("/autenticacao/cadastroUsuario").permitAll()
                                     .requestMatchers("/autenticacao/cadastroUsuarioPf").permitAll()
                                     .requestMatchers("/autenticacao/cadastroUsuarioPj").permitAll()
