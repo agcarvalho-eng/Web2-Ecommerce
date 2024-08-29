@@ -28,11 +28,6 @@ insert into item_Venda (produto_id, quantidade, venda_id) values (2, 1, 2);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (3, 4, 5);
 -- insert into item_Venda (produto_id, quantidade, venda_id) values (5, 3, 5);
 
--- Insert na tabela pessoa_fisica
-insert into pessoa_fisica (id, nome, cpf, telefone) values (1, 'Adriano', '11111111111', '1111-1111');
-insert into pessoa_fisica (id, nome, cpf, telefone) values (2, 'Gabriel', '22222222222', '2222-2222');
-insert into pessoa_fisica (id, nome, cpf, telefone) values (3, 'Fernanda', '33333333333', '3333-3333');
-
 -- Insert na tabela pessoa_juridica
 insert into pessoa_juridica (id, nome, cnpj, telefone) values (3, 'Restaurante Bom Gosto', '33333333000333', '3333-3333');
 insert into pessoa_juridica (id, nome, cnpj, telefone) values (4, 'Restaurante Comida Boa', '44444444000444', '4444-4444');
@@ -40,7 +35,12 @@ insert into pessoa_juridica (id, nome, cnpj, telefone) values (4, 'Restaurante C
 -- Insert na tabela usuario
 insert into usuario (username, password) values ('adriano@gmail.com', '$2a$10$8RcSWKLCSv8IXR4T4CL3muanLWyZ83bn3oHzcrkF6xlOWP7x7waf6');
 insert into usuario (username, password) values ('gabriel@gmail.com', '$2a$10$8RcSWKLCSv8IXR4T4CL3muanLWyZ83bn3oHzcrkF6xlOWP7x7waf6');
+-- insert into usuario (username, password) values ('fernanda@gmail.com', '$2a$10$8RcSWKLCSv8IXR4T4CL3muanLWyZ83bn3oHzcrkF6xlOWP7x7waf6');
 
+-- Insert na tabela pessoa_fisica
+insert into pessoa_fisica (id, usuario_id, nome, cpf, telefone) values (1, 1, 'Adriano', '11111111111', '1111-1111');
+insert into pessoa_fisica (id, usuario_id,nome, cpf, telefone) values (2, 2, 'Gabriel', '22222222222', '2222-2222');
+-- insert into pessoa_fisica (id, usuario_id, nome, cpf, telefone) values (3, 3, 'Fernanda', '33333333333', '3333-3333');
 
 -- Insert na tabela role
 insert into role (nome) values ('ROLE_ADMIN');
